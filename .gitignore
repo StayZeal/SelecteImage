@@ -1,5 +1,12 @@
+/gradle
+/gradlew.bat
+/gradlew
+/gradle.properties
+/.idea
+/.gradle
 *.iml
 .gradle
+/app/build
 /local.properties
 /.idea/workspace.xml
 /.idea/libraries
