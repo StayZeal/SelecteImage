@@ -1,4 +1,4 @@
-package co.gofun.selecteimage;
+package co.gofun.selectimage;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

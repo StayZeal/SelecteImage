@@ -1,4 +1,4 @@
-package co.gofun.selecteimage.util;
+package co.gofun.selectimage.util;
 
 import android.database.AbstractCursor;
 import android.provider.BaseColumns;

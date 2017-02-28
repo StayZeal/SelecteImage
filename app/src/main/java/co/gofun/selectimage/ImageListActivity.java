@@ -1,4 +1,4 @@
-package co.gofun.selecteimage;
+package co.gofun.selectimage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,8 +13,8 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import co.gofun.selecteimage.bean.ImageInfo;
-import co.gofun.selecteimage.util.LoadImageUtil;
+import co.gofun.selectimage.bean.ImageInfo;
+import co.gofun.selectimage.util.LoadImageUtil;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;

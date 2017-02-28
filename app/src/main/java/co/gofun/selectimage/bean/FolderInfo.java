@@ -1,4 +1,4 @@
-package co.gofun.selecteimage.bean;
+package co.gofun.selectimage.bean;
 
 import java.util.List;
 

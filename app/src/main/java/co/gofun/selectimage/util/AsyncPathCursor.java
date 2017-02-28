@@ -1,4 +1,4 @@
-package co.gofun.selecteimage.util;
+package co.gofun.selectimage.util;
 
 import android.content.Context;
 import android.database.Cursor;

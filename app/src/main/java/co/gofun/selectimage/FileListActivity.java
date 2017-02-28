@@ -1,4 +1,4 @@
-package co.gofun.selecteimage;
+package co.gofun.selectimage;
 
 import android.os.Bundle;
 import android.support.v4.widget.SimpleCursorAdapter;
@@ -20,10 +20,10 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import co.gofun.selecteimage.bean.FolderInfo;
-import co.gofun.selecteimage.util.AsyncFolderLoader;
-import co.gofun.selecteimage.util.AsyncPathCursor;
-import co.gofun.selecteimage.view.SquareImageView;
+import co.gofun.selectimage.bean.FolderInfo;
+import co.gofun.selectimage.util.AsyncFolderLoader;
+import co.gofun.selectimage.util.AsyncPathCursor;
+import co.gofun.selectimage.view.SquareImageView;
 
 public class FileListActivity extends AppCompatActivity {
 

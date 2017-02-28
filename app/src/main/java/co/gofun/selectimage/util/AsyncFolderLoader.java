@@ -1,4 +1,4 @@
-package co.gofun.selecteimage.util;
+package co.gofun.selectimage.util;
 
 import android.database.Cursor;
 import android.net.Uri;
@@ -16,7 +16,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import co.gofun.selecteimage.bean.FolderInfo;
+import co.gofun.selectimage.bean.FolderInfo;
 
 
 public class AsyncFolderLoader implements LoaderManager.LoaderCallbacks<Cursor> {

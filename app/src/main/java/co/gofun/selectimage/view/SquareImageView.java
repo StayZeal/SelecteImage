@@ -1,4 +1,4 @@
-package co.gofun.selecteimage.view;
+package co.gofun.selectimage.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;

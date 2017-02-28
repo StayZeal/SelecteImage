@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="co.gofun.selecteimage">
+    package="co.gofun.selectimage">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -10,16 +10,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name="co.gofun.selectimage.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ImageListActivity" />
-        <activity android:name=".FileListActivity" />
-        <activity android:name=".PreviewActivity"></activity>
+        <activity android:name="co.gofun.selectimage.ImageListActivity" />
+        <activity android:name="co.gofun.selectimage.FileListActivity" />
+        <activity android:name="co.gofun.selectimage.PreviewActivity"></activity>
     </application>
 
 </manifest>
