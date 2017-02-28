@@ -1,4 +1,4 @@
-package co.gofun.selecteimage;
+package co.gofun.selectimage;
 
 
 import android.content.Context;
@@ -16,8 +16,8 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import co.gofun.selecteimage.bean.ImageInfo;
-import co.gofun.selecteimage.view.SquareImageView;
+import co.gofun.selectimage.bean.ImageInfo;
+import co.gofun.selectimage.view.SquareImageView;
 
 public class SelectImagesAdapter extends RecyclerView.Adapter {
 

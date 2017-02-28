@@ -1,4 +1,4 @@
-package co.gofun.selecteimage.bean;
+package co.gofun.selectimage.bean;
 
 /**
  * Created by yangfeng on 2017/1/17.

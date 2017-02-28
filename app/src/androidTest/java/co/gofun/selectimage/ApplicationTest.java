@@ -1,4 +1,4 @@
-package co.gofun.selecteimage;
+package co.gofun.selectimage;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

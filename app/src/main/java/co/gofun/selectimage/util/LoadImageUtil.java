@@ -1,4 +1,4 @@
-package co.gofun.selecteimage.util;
+package co.gofun.selectimage.util;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -9,8 +9,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import co.gofun.selecteimage.bean.FolderInfo;
-import co.gofun.selecteimage.bean.ImageInfo;
+import co.gofun.selectimage.bean.FolderInfo;
+import co.gofun.selectimage.bean.ImageInfo;
 
 /**
  * Created by yangfeng on 2017/1/17.

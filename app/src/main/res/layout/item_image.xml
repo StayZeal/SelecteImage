@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <co.gofun.selecteimage.view.SquareImageView
+    <co.gofun.selectimage.view.SquareImageView
         android:id="@+id/content_Iv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

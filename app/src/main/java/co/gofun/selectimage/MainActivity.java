@@ -1,4 +1,4 @@
-package co.gofun.selecteimage;
+package co.gofun.selectimage;
 
 import android.content.Intent;
 import android.os.Bundle;
