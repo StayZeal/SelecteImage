@@ -6,15 +6,19 @@
     android:orientation="vertical"
     tools:context=".FileListActivity">
 
-    <TextView
+   <!-- <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="相册" />
-
-
+-->
+    <!-- <ImageView
+         android:layout_width="match_parent"
+         android:layout_height="100dp"
+         android:scaleType="centerCrop"
+         android:src="@drawable/test"/>-->
 
     <ListView
-        android:id="@+id/filder_Lv"
+        android:id="@+id/folder_Lv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></ListView>
 

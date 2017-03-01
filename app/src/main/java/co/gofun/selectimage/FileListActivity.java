@@ -21,6 +21,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import co.gofun.selectimage.bean.FolderInfo;
+import co.gofun.selectimage.bean.ImageInfo;
 import co.gofun.selectimage.util.AsyncFolderLoader;
 import co.gofun.selectimage.util.AsyncPathCursor;
 import co.gofun.selectimage.view.SquareImageView;
@@ -69,7 +70,7 @@ public class FileListActivity extends AppCompatActivity {
         AsyncFolderLoader asyncFolderLoader = new AsyncFolderLoader(this, "");
         asyncFolderLoader.setOnDataLoadCompleteListener(new AsyncFolderLoader.OnDataLoadCompleteListener() {
             @Override
-            public void onComplete(List<FolderInfo> folders) {
+            public void onComplete(List<FolderInfo> folders, List<ImageInfo> images) {
                 FileListActivity.this.folders = folders;
                 mFoldersAdapter.notifyDataSetChanged();
             }
