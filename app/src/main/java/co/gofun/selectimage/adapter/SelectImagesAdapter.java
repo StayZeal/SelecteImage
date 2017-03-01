@@ -1,4 +1,4 @@
-package co.gofun.selectimage;
+package co.gofun.selectimage.adapter;
 
 
 import android.content.Context;
@@ -16,6 +16,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import co.gofun.selectimage.R;
 import co.gofun.selectimage.bean.ImageInfo;
 import co.gofun.selectimage.view.SquareImageView;
 

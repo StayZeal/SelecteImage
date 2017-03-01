@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.Gravity;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -19,16 +18,12 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.gofun.selectimage.adapter.SelectImagesAdapter;
+import co.gofun.selectimage.bean.FolderInfo;
 import co.gofun.selectimage.bean.ImageInfo;
-import co.gofun.selectimage.util.LoadImageUtil;
+import co.gofun.selectimage.util.AsyncFolderLoader;
 import co.gofun.selectimage.view.AlbumPopupWindow;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
-public class ImageListActivity extends AppCompatActivity {
+public class SelectImageActivity extends AppCompatActivity {
 
 
     @Bind(R.id.image_Rv)
@@ -44,19 +39,20 @@ public class ImageListActivity extends AppCompatActivity {
     private AlbumPopupWindow albumPopupWindow;
 
 
+    private List<FolderInfo> folders = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_image_list);
+        setContentView(R.layout.activity_select_image);
         ButterKnife.bind(this);
 
 
         init();
         initPop();
+        initFolderLoader();
 
-//        getDatas();
-
-        selectImagesAdapter.setImages(getImages());
+//        selectImagesAdapter.setImages(getImages());
     }
 
     private List<ImageInfo> getImages() {
@@ -82,50 +78,37 @@ public class ImageListActivity extends AppCompatActivity {
     }
 
     public static void showActivity(Context context, List<String> imageUrls) {
-        Intent intent = new Intent(context, ImageListActivity.class);
-//        Bundle bundle = new Bundle("iamgeUrls", imageUrls);
+        Intent intent = new Intent(context, SelectImageActivity.class);
         intent.putExtra("imageUrls", (Serializable) imageUrls);
         context.startActivity(intent);
     }
 
-
-    private void getDatas() {
-        Observable.create(new Observable.OnSubscribe<List<ImageInfo>>() {
+    private void initFolderLoader() {
+        AsyncFolderLoader asyncFolderLoader = new AsyncFolderLoader(this, "");
+        asyncFolderLoader.setOnDataLoadCompleteListener(new AsyncFolderLoader.OnDataLoadCompleteListener() {
             @Override
-            public void call(Subscriber<? super List<ImageInfo>> subscriber) {
-
-                subscriber.onNext(LoadImageUtil.getImages(ImageListActivity.this));
-                subscriber.onCompleted();
-                ;
+            public void onComplete(List<FolderInfo> folders, List<ImageInfo> images) {
+                SelectImageActivity.this.folders = folders;
+                albumPopupWindow.setData(folders);
+                selectImagesAdapter.setImages(images);
             }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<ImageInfo>>() {
-                    @Override
-                    public void call(List<ImageInfo> imageInfos) {
-                        selectImagesAdapter.setImages(imageInfos);
-                    }
-                });
-
+        });
     }
+
 
     private void initPop() {
         albumPopupWindow = new AlbumPopupWindow(this);
     }
 
     private void showPop() {
-        int[] location = new int[2];
-//        View v = findViewById(R.id.content);
+//        int[] location = new int[2];
         View v = findViewById(R.id.menu_ll);
-        v.getLocationOnScreen(location);
-//        albumPopupWindow.showAsDropDown(v);
-//        albumPopupWindow.showAsDropDown(v, 0, location[1]);
-        albumPopupWindow.showAtLocation(v,
+//        v.getLocationOnScreen(location);
+        albumPopupWindow.show(v);
+        /*albumPopupWindow.showAtLocation(v,
                 Gravity.TOP,
-//                Gravity.BOTTOM,
                 0,
-//                0);
-                location[1] - albumPopupWindow.getHeight());
+                location[1] - albumPopupWindow.getHeight());*/
     }
 
 

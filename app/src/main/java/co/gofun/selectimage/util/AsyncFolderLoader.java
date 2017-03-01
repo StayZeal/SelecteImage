@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 
 import co.gofun.selectimage.bean.FolderInfo;
+import co.gofun.selectimage.bean.ImageInfo;
 
 
 public class AsyncFolderLoader implements LoaderManager.LoaderCallbacks<Cursor> {
@@ -32,6 +33,7 @@ public class AsyncFolderLoader implements LoaderManager.LoaderCallbacks<Cursor> 
 
     private OnDataLoadCompleteListener onDataLoadCompleteListener;
     private List<FolderInfo> folderInfos = new ArrayList<>();
+    private List<ImageInfo> images = new ArrayList<>();
 
     public AsyncFolderLoader(AppCompatActivity mContext, String mCurFilters) {
         this.mContext = mContext;
@@ -85,6 +87,9 @@ public class AsyncFolderLoader implements LoaderManager.LoaderCallbacks<Cursor> 
         if (data.moveToFirst()) {
             while (data.moveToNext()) {
 
+                ImageInfo imageInfo = new ImageInfo();
+                imageInfo.url  = data.getString(1);
+                images.add(imageInfo);
                 Log.i(TAG, data.getString(1));
                 Log.i(TAG, data.getString(2));
 //                Log.i(TAG, data.getString(7));
@@ -114,7 +119,7 @@ public class AsyncFolderLoader implements LoaderManager.LoaderCallbacks<Cursor> 
         long endTime = System.currentTimeMillis();
         Log.i(TAG, "用时：" + (endTime - startTime) + "ms");
         if (onDataLoadCompleteListener != null) {
-            onDataLoadCompleteListener.onComplete(folderInfos);
+            onDataLoadCompleteListener.onComplete(folderInfos,images);
         }
 
     }
@@ -125,7 +130,7 @@ public class AsyncFolderLoader implements LoaderManager.LoaderCallbacks<Cursor> 
     }
 
     public interface OnDataLoadCompleteListener {
-        void onComplete(List<FolderInfo> folders);
+        void onComplete(List<FolderInfo> folders,List<ImageInfo> images);
     }
 
 }

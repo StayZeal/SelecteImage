@@ -3,19 +3,25 @@ package co.gofun.selectimage;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import co.gofun.selectimage.view.AlbumPopupWindow;
 
 public class MainActivity extends AppCompatActivity {
 
+    private static final String TAG = "MainActivity";
     @Bind(R.id.select_Btn)
     Button selectBtn;
     @Bind(R.id.show_folders_Btn)
     Button showFoldersBtn;
+    @Bind(R.id.show_pop_Btn)
+    Button showPopBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @OnClick({R.id.select_Btn, R.id.show_folders_Btn})
+    @OnClick({R.id.select_Btn, R.id.show_folders_Btn, R.id.show_pop_Btn})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -42,6 +48,23 @@ public class MainActivity extends AppCompatActivity {
                 intent = new Intent(this, FileListActivity.class);
                 startActivityForResult(intent, 2000);
                 break;
+            case R.id.show_pop_Btn:
+//                showPop();
+                intent = new Intent(this, SelectImageActivity.class);
+                startActivity(intent);
+                break;
         }
     }
+
+    private void showPop() {
+
+        AlbumPopupWindow albumPopupWindow = new AlbumPopupWindow(this);
+        albumPopupWindow.showAtLocation(findViewById(android.R.id.content),
+                Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL,
+                0,
+                0);
+        Log.i(TAG, "showPop()");
+    }
+
+
 }
