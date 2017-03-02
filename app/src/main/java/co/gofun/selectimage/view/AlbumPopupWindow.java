@@ -23,6 +23,14 @@ public class AlbumPopupWindow extends PopupWindow {
 
     private View contentView;
     private Context mContext;
+//    private FolderAdapter.OnFolderClickListener onFolderClickListener;
+
+    public void setOnFolderClickListener(FolderAdapter.OnFolderClickListener onFolderClickListener) {
+//        this.onFolderClickListener = onFolderClickListener;
+        if (folderAdapter != null) {
+            folderAdapter.setOnFolderClickListener(onFolderClickListener);
+        }
+    }
 
     public AlbumPopupWindow(Context context) {
         this.mContext = context;
@@ -43,7 +51,7 @@ public class AlbumPopupWindow extends PopupWindow {
         ColorDrawable dw = new ColorDrawable(0xb0000000);
         // 设置弹出窗体的背景
         this.setBackgroundDrawable(dw);
-        this.setOutsideTouchable(true);
+//        this.setOutsideTouchable(true);
 
         // 设置弹出窗体显示时的动画，从底部向上弹出
 //        this.setAnimationStyle(R.style.take_photo_anim);
@@ -64,14 +72,11 @@ public class AlbumPopupWindow extends PopupWindow {
     public void show(View v) {
         int[] location = new int[2];
         v.getLocationOnScreen(location);
-        showAtLocation(v,
-                Gravity.TOP,
-                0,
-                location[1] - getHeight());
+        showAtLocation(v,Gravity.TOP,0,location[1] - getHeight());
         if (isShowing()) {
             initList();
         }
-    }
 
+    }
 
 }

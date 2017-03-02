@@ -20,7 +20,12 @@
         <activity android:name="co.gofun.selectimage.ImageListActivity" />
         <activity android:name="co.gofun.selectimage.FileListActivity" />
         <activity android:name="co.gofun.selectimage.PreviewActivity"></activity>
-        <activity android:name="co.gofun.selectimage.SelectImageActivity"></activity>
+        <activity
+            android:name=".pop.SelectImageActivity"
+            android:label="SelectImageActivity"></activity>
+        <activity
+            android:name=".spinner.SelectImageActivity"
+            android:label="SpinnerImageActivity" />
     </application>
 
 </manifest>

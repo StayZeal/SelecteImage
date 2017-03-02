@@ -11,6 +11,7 @@ import android.widget.Button;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import co.gofun.selectimage.pop.SelectImageActivity;
 import co.gofun.selectimage.view.AlbumPopupWindow;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
     Button showFoldersBtn;
     @Bind(R.id.show_pop_Btn)
     Button showPopBtn;
+    @Bind(R.id.show_diglog_Btn)
+    Button showDiglogBtn;
+    @Bind(R.id.show_spinner_Btn)
+    Button showSpinnerBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @OnClick({R.id.select_Btn, R.id.show_folders_Btn, R.id.show_pop_Btn})
+    @OnClick({R.id.select_Btn, R.id.show_folders_Btn, R.id.show_pop_Btn,
+            R.id.show_diglog_Btn, R.id.show_spinner_Btn})
     public void onClick(View view) {
         Intent intent;
         switch (view.getId()) {
@@ -51,6 +57,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.show_pop_Btn:
 //                showPop();
                 intent = new Intent(this, SelectImageActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.show_diglog_Btn:
+                break;
+            case R.id.show_spinner_Btn:
+                intent = new Intent(this, co.gofun.selectimage.spinner.SelectImageActivity.class);
                 startActivity(intent);
                 break;
         }
