@@ -29,6 +29,7 @@
 
     </FrameLayout>
 
+
     <LinearLayout
         android:id="@+id/menu_ll"
         android:layout_width="match_parent"
@@ -37,11 +38,17 @@
         android:orientation="horizontal">
 
 
-        <Button
-            android:id="@+id/album_Btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="相册" />
+
+        <Spinner
+            android:id="@+id/folder_spinner"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:background="#ffdedd"
+            android:overlapAnchor="false"
+            android:dropDownSelector="#345678"
+            android:dropDownWidth="1000dp"></Spinner>
+
+
 
 
         <CheckBox

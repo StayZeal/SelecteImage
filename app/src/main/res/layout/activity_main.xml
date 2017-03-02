@@ -32,5 +32,19 @@
         android:layout_centerInParent="true"
         android:text="popupWindow" />
 
+    <Button
+        android:id="@+id/show_diglog_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="DialogWindow" />
+
+    <Button
+        android:id="@+id/show_spinner_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="SpinnerWindow" />
+
 
 </LinearLayout>

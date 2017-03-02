@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
@@ -20,13 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import co.gofun.selectimage.adapter.SelectImagesAdapter;
 import co.gofun.selectimage.bean.ImageInfo;
-import co.gofun.selectimage.util.LoadImageUtil;
 import co.gofun.selectimage.view.AlbumPopupWindow;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 public class ImageListActivity extends AppCompatActivity {
 
@@ -89,25 +83,25 @@ public class ImageListActivity extends AppCompatActivity {
     }
 
 
-    private void getDatas() {
-        Observable.create(new Observable.OnSubscribe<List<ImageInfo>>() {
-            @Override
-            public void call(Subscriber<? super List<ImageInfo>> subscriber) {
-
-                subscriber.onNext(LoadImageUtil.getImages(ImageListActivity.this));
-                subscriber.onCompleted();
-                ;
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<List<ImageInfo>>() {
-                    @Override
-                    public void call(List<ImageInfo> imageInfos) {
-                        selectImagesAdapter.setImages(imageInfos);
-                    }
-                });
-
-    }
+//    private void getDatas() {
+//        Observable.create(new Observable.OnSubscribe<List<ImageInfo>>() {
+//            @Override
+//            public void call(Subscriber<? super List<ImageInfo>> subscriber) {
+//
+//                subscriber.onNext(LoadImageUtil.getImages(ImageListActivity.this));
+//                subscriber.onCompleted();
+//                ;
+//            }
+//        }).subscribeOn(Schedulers.io())
+//                .observeOn(AndroidSchedulers.mainThread())
+//                .subscribe(new Action1<List<ImageInfo>>() {
+//                    @Override
+//                    public void call(List<ImageInfo> imageInfos) {
+//                        selectImagesAdapter.setImages(imageInfos);
+//                    }
+//                });
+//
+//    }
 
     private void initPop() {
         albumPopupWindow = new AlbumPopupWindow(this);

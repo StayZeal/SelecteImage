@@ -28,6 +28,9 @@ public class SelectImagesAdapter extends RecyclerView.Adapter {
     private Context mContext;
     private ArrayList<String> checkImages = new ArrayList<>();
 
+
+    private OnSelectImageListener onSelectImageListener;
+
     public SelectImagesAdapter(Context mContext) {
         this.mContext = mContext;
     }
@@ -42,10 +45,17 @@ public class SelectImagesAdapter extends RecyclerView.Adapter {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 int pos = myViewHolder.getAdapterPosition();
                 if (isChecked) {
-                    checkImages.add(images.get(pos).url);
-//                    buttonView.setText(checkImages.size() + 1 + "");
+                    if (checkImages.size() < 9) {
+                        checkImages.add(images.get(pos).url);
+                    } else {
+                        myViewHolder.countCb.setChecked(false);
+                    }
                 } else {
                     checkImages.remove(images.get(pos).url);
+                }
+
+                if (onSelectImageListener != null) {
+                    onSelectImageListener.onSelect(checkImages);
                 }
             }
         });
@@ -57,7 +67,7 @@ public class SelectImagesAdapter extends RecyclerView.Adapter {
         MyViewHolder myViewHolder = (MyViewHolder) holder;
         Glide.with(mContext)
                 .load(images.get(position).url)
-                .override(300,300)
+                .override(300, 300)
                 .into(myViewHolder.contentIv);
         if (images.get(position).checked) {
 //            myViewHolder.countCb.setText();
@@ -78,6 +88,24 @@ public class SelectImagesAdapter extends RecyclerView.Adapter {
 
     private void updateCount(int pos) {
 
+    }
+
+    public ArrayList<String> getCheckImages() {
+        return checkImages;
+    }
+
+    private ImageInfo parseString(String imageUrl) {
+        ImageInfo imageInfo = new ImageInfo();
+        imageInfo.url = imageUrl;
+        return imageInfo;
+    }
+
+    public void setOnSelectImageListener(OnSelectImageListener onSelectImageListener) {
+        this.onSelectImageListener = onSelectImageListener;
+    }
+
+    public interface OnSelectImageListener {
+        void onSelect(List<String> selectImages);
     }
 
 

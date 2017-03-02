@@ -18,7 +18,7 @@ import co.gofun.selectimage.R;
 import co.gofun.selectimage.bean.FolderInfo;
 import co.gofun.selectimage.view.SquareImageView;
 
-public class FolderAdapter extends BaseAdapter implements SpinnerAdapter {
+public class FolderSpinnerAdapter extends BaseAdapter implements SpinnerAdapter {
 
 
     private List<FolderInfo> folders;
@@ -30,7 +30,7 @@ public class FolderAdapter extends BaseAdapter implements SpinnerAdapter {
         this.onFolderClickListener = onFolderClickListener;
     }
 
-    public FolderAdapter(List<FolderInfo> folders, Context mContext) {
+    public FolderSpinnerAdapter(List<FolderInfo> folders, Context mContext) {
         this.folders = folders;
         this.mContext = mContext;
     }
@@ -58,6 +58,16 @@ public class FolderAdapter extends BaseAdapter implements SpinnerAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View v = LayoutInflater.from(mContext).inflate(R.layout.spinner_dropdown_item, null);
+        TextView textView = (TextView) v.findViewById(R.id.text1);
+        textView.setText(folders.get(position).name);
+        return v;
+    }
+
+    @Override
+    public View getDropDownView(int position, View convertView, ViewGroup parent) {
+
+
         ViewHolder vHolder;
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_folder, parent, false);
@@ -68,20 +78,7 @@ public class FolderAdapter extends BaseAdapter implements SpinnerAdapter {
         } else {
             vHolder = (ViewHolder) convertView.getTag();
         }
-         /*   Cursor cursor = getCursor();
-            if (cursor != null && cursor.move(position)) {
-                vHolder.title.setText(cursor.getString(cursor
-                        .getColumnIndex(MediaStore.Images.ImageColumns.BUCKET_DISPLAY_NAME)));
-                long date = cursor.getLong(cursor
-                        .getColumnIndex(MediaStore.Images.ImageColumns.DATE_TAKEN));
-                vHolder.content.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date(date)));
-//                vHolder.image.setImageURI(Uri.parse(cursor.getString(1)));
-          *//*      Glide.with(FileListActivity.this)
-                        .load(cursor.getString(1))
-                        .into(vHolder.image);*//*
-                Log.i(TAG, cursor.getString(5));
-                Log.i(TAG, cursor.getString(6));
-            }*/
+
 
         vHolder.title.setText(folders.get(position).name);
         vHolder.content.setText("共" + folders.get(position).imageCount + "张");
@@ -90,7 +87,7 @@ public class FolderAdapter extends BaseAdapter implements SpinnerAdapter {
                 .into(vHolder.image);
 
         final int pos = position;
-        convertView.setOnClickListener(new View.OnClickListener() {
+     /*   convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (onFolderClickListener != null) {
@@ -98,18 +95,10 @@ public class FolderAdapter extends BaseAdapter implements SpinnerAdapter {
                 }
 //                ImageListActivity.showActivity(mContext, folders.get(pos).imagrUrls);
             }
-        });
+        });*/
 
         return convertView;
-
     }
-
-/*    @Override
-    public View getDropDownView(int position, View convertView, ViewGroup parent) {
-        View v = LayoutInflater.from(mContext).inflate(android.R.layout.simple_spinner_dropdown_item, null);
-        return v;
-//        return super.getDropDownView(position, convertView, parent);
-    }*/
 
     static class ViewHolder {
         @Bind(R.id.image)
