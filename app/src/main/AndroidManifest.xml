@@ -10,19 +10,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="co.gofun.selectimage.MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="co.gofun.selectimage.ImageListActivity" />
-        <activity android:name="co.gofun.selectimage.FileListActivity" />
-        <activity android:name="co.gofun.selectimage.PreviewActivity"></activity>
+        <activity android:name=".ImageListActivity" />
+        <activity android:name=".FileListActivity" />
+        <activity android:name=".PreviewActivity" />
         <activity
             android:name=".pop.SelectImageActivity"
-            android:label="SelectImageActivity"></activity>
+            android:label="SelectImageActivity" />
         <activity
             android:name=".spinner.SelectImageActivity"
             android:label="SpinnerImageActivity" />

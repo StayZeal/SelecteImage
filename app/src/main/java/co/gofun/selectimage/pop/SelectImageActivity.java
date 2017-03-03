@@ -103,10 +103,10 @@ public class SelectImageActivity extends AppCompatActivity {
         AsyncFolderLoader asyncFolderLoader = new AsyncFolderLoader(this, "");
         asyncFolderLoader.setOnDataLoadCompleteListener(new AsyncFolderLoader.OnDataLoadCompleteListener() {
             @Override
-            public void onComplete(List<FolderInfo> folders, List<ImageInfo> images) {
+            public void onComplete(List<FolderInfo> folders, List<String> images) {
                 SelectImageActivity.this.folders = folders;
                 albumPopupWindow.setData(folders);
-                selectImagesAdapter.setImages(images);
+                selectImagesAdapter.setImages(parstImageInfo(images));
             }
         });
     }

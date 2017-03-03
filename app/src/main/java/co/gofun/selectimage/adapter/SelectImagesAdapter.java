@@ -46,7 +46,9 @@ public class SelectImagesAdapter extends RecyclerView.Adapter {
                 int pos = myViewHolder.getAdapterPosition();
                 if (isChecked) {
                     if (checkImages.size() < 9) {
-                        checkImages.add(images.get(pos).url);
+                        if (!checkImages.contains(images.get(pos).url))
+                            checkImages.add(images.get(pos).url);
+
                     } else {
                         myViewHolder.countCb.setChecked(false);
                     }
@@ -69,11 +71,18 @@ public class SelectImagesAdapter extends RecyclerView.Adapter {
                 .load(images.get(position).url)
                 .override(300, 300)
                 .into(myViewHolder.contentIv);
-        if (images.get(position).checked) {
-//            myViewHolder.countCb.setText();
+
+        if (checkImages.contains(images.get(position).url)) {
+            myViewHolder.countCb.setChecked(true);
         } else {
-            myViewHolder.countCb.setText("");
+            myViewHolder.countCb.setChecked(false);
         }
+//
+//        if (images.get(position).checked) {
+//            myViewHolder.countCb.setChecked(true);
+//        } else {
+//            myViewHolder.countCb.setChecked(false);
+//        }
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import co.gofun.selectimage.PreviewActivity;
 import co.gofun.selectimage.R;
 import co.gofun.selectimage.adapter.FolderSpinnerAdapter;
 import co.gofun.selectimage.adapter.SelectImagesAdapter;
@@ -53,6 +55,7 @@ public class SelectImageActivity extends AppCompatActivity {
 
 
     private List<FolderInfo> folders = new ArrayList<>();
+    private List<String> selectImages;
     private int[] mentLocation;
 
     @Override
@@ -78,6 +81,13 @@ public class SelectImageActivity extends AppCompatActivity {
             @Override
             public void onSelect(List<String> selectImages) {
                 completeBtn.setText("完成（" + selectImages.size() + ")");
+                SelectImageActivity.this.selectImages = selectImages;
+                if (selectImages.size() > 0) {
+                    previewBtn.setEnabled(true);
+                } else {
+                    previewBtn.setEnabled(false);
+
+                }
             }
         });
 
@@ -93,6 +103,18 @@ public class SelectImageActivity extends AppCompatActivity {
         mSpinnerAdapter = new FolderSpinnerAdapter(null, this);
         folderSpinner.setAdapter(mSpinnerAdapter);
 //        folderSpinner.setDropDownVerticalOffset(mentLocation[1]);
+
+        folderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                selectImagesAdapter.setImages(parstImageInfo(folders.get(position).imagrUrls));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
 
 
@@ -106,18 +128,20 @@ public class SelectImageActivity extends AppCompatActivity {
         AsyncFolderLoader asyncFolderLoader = new AsyncFolderLoader(this, "");
         asyncFolderLoader.setOnDataLoadCompleteListener(new AsyncFolderLoader.OnDataLoadCompleteListener() {
             @Override
-            public void onComplete(List<FolderInfo> folders, List<ImageInfo> images) {
+            public void onComplete(List<FolderInfo> folders, List<String> images) {
+                FolderInfo folderInfo = new FolderInfo();
+                folderInfo.imagrUrls = images;
+                folderInfo.name = "全部照片";
+                folderInfo.imageCount = images.size();
+                folders.add(0, folderInfo);
                 SelectImageActivity.this.folders = folders;
+
 //                albumPopupWindow.setData(folders);
                 mSpinnerAdapter.setData(folders);
-                selectImagesAdapter.setImages(images);
+                selectImagesAdapter.setImages(parstImageInfo(images));
             }
         });
     }
-
-
-
-
 
 
     @OnClick({R.id.preview_Btn})
@@ -125,6 +149,7 @@ public class SelectImageActivity extends AppCompatActivity {
         switch (view.getId()) {
 
             case R.id.preview_Btn:
+                PreviewActivity.showActivity(this, selectImages);
                 break;
         }
     }
