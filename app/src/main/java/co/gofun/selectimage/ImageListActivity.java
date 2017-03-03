@@ -77,7 +77,6 @@ public class ImageListActivity extends AppCompatActivity {
 
     public static void showActivity(Context context, List<String> imageUrls) {
         Intent intent = new Intent(context, ImageListActivity.class);
-//        Bundle bundle = new Bundle("iamgeUrls", imageUrls);
         intent.putExtra("imageUrls", (Serializable) imageUrls);
         context.startActivity(intent);
     }

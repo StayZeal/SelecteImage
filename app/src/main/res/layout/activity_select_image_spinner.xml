@@ -38,17 +38,14 @@
         android:orientation="horizontal">
 
 
-
         <Spinner
             android:id="@+id/folder_spinner"
             android:layout_width="100dp"
             android:layout_height="match_parent"
             android:background="#ffdedd"
-            android:overlapAnchor="false"
             android:dropDownSelector="#345678"
-            android:dropDownWidth="1000dp"></Spinner>
-
-
+            android:dropDownWidth="1000dp"
+            android:overlapAnchor="false"></Spinner>
 
 
         <CheckBox
@@ -66,6 +63,7 @@
             android:id="@+id/preview_Btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:text="预览" />
 
         <Button

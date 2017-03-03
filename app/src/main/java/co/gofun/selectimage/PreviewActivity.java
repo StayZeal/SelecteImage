@@ -1,27 +1,28 @@
 package co.gofun.selectimage;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
-import android.widget.ImageView;
+
+import java.io.Serializable;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class PreviewActivity extends AppCompatActivity {
 
-    @Bind(R.id.back_iv)
-    ImageView backIv;
-    @Bind(R.id.next_Btn)
-    Button nextBtn;
+
     @Bind(R.id.preview_Vp)
     ViewPager previewVp;
 
     private MyAdapter mAdapter;
+    private List<String> imageUrls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +31,23 @@ public class PreviewActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
+        getDatas();
         mAdapter = new MyAdapter(getSupportFragmentManager());
         previewVp.setAdapter(mAdapter);
+
+    }
+
+
+    private void getDatas() {
+        imageUrls = (List<String>) getIntent().getSerializableExtra("imageUrls");
+//        mAdapter.notifyDataSetChanged();
+    }
+
+
+    public static void showActivity(Context context, List<String> imageUrls) {
+        Intent intent = new Intent(context, PreviewActivity.class);
+        intent.putExtra("imageUrls", (Serializable) imageUrls);
+        context.startActivity(intent);
     }
 
 
@@ -43,12 +59,12 @@ public class PreviewActivity extends AppCompatActivity {
 
         @Override
         public Fragment getItem(int position) {
-            return PreviewFragment.newInstance("", "");
+            return PreviewFragment.newInstance(imageUrls.get(position), "");
         }
 
         @Override
         public int getCount() {
-            return 0;
+            return imageUrls == null ? 0 : imageUrls.size();
         }
     }
 

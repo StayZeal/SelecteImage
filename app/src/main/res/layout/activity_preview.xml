@@ -6,7 +6,6 @@
     tools:context="co.gofun.selectimage.PreviewActivity">
 
 
-    <include layout="@layout/title" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/preview_Vp"
