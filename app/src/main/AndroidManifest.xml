@@ -21,11 +21,18 @@
         <activity android:name=".FileListActivity" />
         <activity android:name=".PreviewActivity" />
         <activity
+            android:name=".dialog.SelectImageActivity"
+            android:label="SelectImageDialog" />
+        <activity
             android:name=".pop.SelectImageActivity"
-            android:label="SelectImageActivity" />
+            android:label="SelectImagePop" />
         <activity
             android:name=".spinner.SelectImageActivity"
-            android:label="SpinnerImageActivity" />
+            android:label="SpinnerImageSpinner" /><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

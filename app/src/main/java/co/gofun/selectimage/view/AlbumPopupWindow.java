@@ -18,6 +18,8 @@ import co.gofun.selectimage.bean.FolderInfo;
 
 public class AlbumPopupWindow extends PopupWindow {
 
+
+
     ListView folderLv;
     private FolderAdapter folderAdapter;
 

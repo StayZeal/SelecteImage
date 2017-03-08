@@ -100,6 +100,7 @@ public class FolderSpinnerAdapter extends BaseAdapter implements SpinnerAdapter 
         return convertView;
     }
 
+
     static class ViewHolder {
         @Bind(R.id.image)
         SquareImageView image;
