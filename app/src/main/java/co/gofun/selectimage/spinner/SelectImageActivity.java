@@ -1,5 +1,6 @@
 package co.gofun.selectimage.spinner;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +12,11 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ListPopupWindow;
 import android.widget.Spinner;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,6 +49,8 @@ public class SelectImageActivity extends AppCompatActivity {
     FrameLayout shadeFl;
     @Bind(R.id.folder_spinner)
     Spinner folderSpinner;
+
+    private ListPopupWindow listPopupWindow;
     //    private FolderAdapter mSpinnerAdapter;
     private FolderSpinnerAdapter mSpinnerAdapter;
 //    private ArrayAdapter<CharSequence> mSpinnerAdapter;
@@ -57,6 +62,8 @@ public class SelectImageActivity extends AppCompatActivity {
     private List<FolderInfo> folders = new ArrayList<>();
     private List<String> selectImages;
     private int[] mentLocation;
+
+    AlertDialog s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,6 +122,19 @@ public class SelectImageActivity extends AppCompatActivity {
 
             }
         });
+
+        try {
+            Field popup = Spinner.class.getDeclaredField("mPopup");
+            popup.setAccessible(true);
+
+            // Get private mPopup member variable and try cast to ListPopupWindow
+            android.widget.ListPopupWindow popupWindow = (android.widget.ListPopupWindow) popup.get(folderSpinner);
+
+            // Set popupWindow height to 500px
+            popupWindow.setHeight(5 * getResources().getDimensionPixelOffset(R.dimen.__picker_item_directory_height));
+        } catch (NoClassDefFoundError | ClassCastException | NoSuchFieldException | IllegalAccessException e) {
+            // silently fail...
+        }
     }
 
 

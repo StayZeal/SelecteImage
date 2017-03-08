@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.show_diglog_Btn:
+                intent = new Intent(this, co.gofun.selectimage.dialog.SelectImageActivity.class);
+                startActivity(intent);
+
                 break;
             case R.id.show_spinner_Btn:
                 intent = new Intent(this, co.gofun.selectimage.spinner.SelectImageActivity.class);
